@@ -1,1 +1,0 @@
-# lumora_test
