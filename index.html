@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Lumora — Something is Coming</title>
+  <meta name="description" content="Light for the mind. A quiet signal. A new kind of companion." />
+  <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
+
+  <!-- Tailwind with config -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          screens: {
+            'xs': '475px',
+          },
+        }
+      }
+    }
+  </script>
+  
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <!-- Feather Icons -->
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  <!-- Vanta Waves -->
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
+
+  <style>
+    :root {
+      --lumora-sky: #f5f7ff;
+      --lumora-sunrise: #ffe8b5;
+      --lumora-lavender: #d7d2ff;
+      --lumora-violet: #7a6cff;
+      --lumora-amber: #ffcf6b;
+      --lumora-text-dark: #1a1d2e;
+      --lumora-text-soft: #4f5375;
+    }
+    
+    html { 
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+    
+    body { 
+      background-color: var(--lumora-sky); 
+      color: var(--lumora-text-dark);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    
+    .hero-gradient {
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255, 232, 181, 0.7), transparent 60%),
+        radial-gradient(circle at 78% 15%, rgba(215, 210, 255, 0.65), transparent 55%),
+        linear-gradient(160deg, #ffffff 0%, #f2f4ff 100%);
+      min-height: 100vh;
+    }
+    
+    .feature-card {
+      background: #ffffff;
+      border: 1px solid rgba(122, 108, 255, 0.15);
+      box-shadow: 0 20px 40px -25px rgba(52, 58, 90, 0.45);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255, 207, 107, 0.6);
+      box-shadow: 0 30px 50px -20px rgba(95, 104, 150, 0.55);
+    }
+    
+    .feature-card h3 { color: var(--lumora-text-dark); }
+    .feature-card p { color: var(--lumora-text-soft); }
+    
+    .feature-icon {
+      background: linear-gradient(135deg, rgba(122, 108, 255, 0.25), rgba(255, 207, 107, 0.3));
+      color: var(--lumora-violet);
+      box-shadow: inset 0 0 10px rgba(122, 108, 255, 0.18);
+    }
+    
+    .glow-button {
+      background: linear-gradient(135deg, var(--lumora-amber) 0%, var(--lumora-violet) 100%);
+      box-shadow: 0 12px 30px -12px rgba(122, 108, 255, 0.6);
+    }
+    
+    .glow-button:hover { filter: brightness(1.06); }
+    
+    .glass-button {
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(122, 108, 255, 0.25);
+      backdrop-filter: blur(10px);
+      color: var(--lumora-text-dark);
+    }
+    
+    .glass-button:hover { background: rgba(255, 255, 255, 0.9); }
+    
+    .waitlist-form {
+      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(122, 108, 255, 0.2);
+      box-shadow: 0 25px 50px -30px rgba(77, 86, 124, 0.45);
+    }
+    
+    .hero-title { 
+      text-shadow: 0 12px 35px rgba(255, 207, 107, 0.45);
+      line-height: 1.1;
+    }
+
+    /* Mobile optimizations */
+    @media (max-width: 768px) {
+      .hero-gradient {
+        min-height: 100dvh; /* Use dynamic viewport height */
+      }
+      
+      .hero-title {
+        font-size: 2.5rem;
+        line-height: 1.1;
+      }
+      
+      .feature-card:hover {
+        transform: none; /* Disable hover effects on mobile */
+      }
+      
+      /* Prevent horizontal scroll */
+      .max-w-7xl {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero-title {
+        font-size: 2rem;
+      }
+    }
+
+    /* Fix for iOS Safari */
+    @supports (-webkit-touch-callout: none) {
+      .hero-gradient {
+        min-height: -webkit-fill-available;
+      }
+    }
+  </style>
+</head>
+<body class="font-sans antialiased">
+  <div id="vanta-bg" class="min-h-screen">
+    <div class="relative overflow-hidden hero-gradient">
+
+      <!-- Navigation -->
+      <nav class="relative z-10 px-4 sm:px-6 py-4 sm:py-6 flex justify-between items-center">
+        <div class="flex items-center">
+          <i data-feather="moon" class="text-[#7a6cff] w-6 h-6 sm:w-8 sm:h-8 mr-2"></i>
+          <span class="text-[#1a1d2e] text-xl sm:text-2xl font-bold">Lumora</span>
+        </div>
+      </nav>
+
+      <!-- Hero Section -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-20 md:py-32 text-center">
+        <p class="tracking-[.25em] text-[#4f5375] text-xs sm:text-sm mb-3" data-aos="fade-up">A QUIET SIGNAL</p>
+        <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold text-[#1a1d2e] mb-4 hero-title px-4" data-aos="fade-up" data-aos-delay="60">
+          Light for the mind.
+        </h1>
+        <p class="text-base sm:text-lg md:text-xl text-[#4f5375] max-w-3xl mx-auto mb-8 sm:mb-10 px-4" data-aos="fade-up" data-aos-delay="120">
+          A quiet signal. Whispers of something new.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4 px-4" data-aos="fade-up" data-aos-delay="180">
+          <a href="#hints" class="px-6 sm:px-8 py-3 sm:py-4 font-medium rounded-full transition duration-300 text-white glow-button hover:opacity-95 text-center">
+            Follow the Signal
+          </a>
+        </div>
+        <div class="mt-6 sm:mt-8 text-[#4f5375] text-sm px-4" data-aos="fade-up" data-aos-delay="220">From signal to self. // 2025</div>
+      </div>
+
+      <!-- Hints Section -->
+      <section id="hints" class="py-12 sm:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+          <div class="text-center mb-10 sm:mb-14">
+            <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-[#1a1d2e] mb-2" data-aos="fade-up">Follow the signal</h2>
+            <p class="text-[#4f5375] max-w-2xl mx-auto px-4" data-aos="fade-up" data-aos-delay="60">Hints, not answers.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            <!-- Rhythms -->
+            <div class="feature-card rounded-xl p-6 sm:p-8 transition duration-300" data-aos="fade-up">
+              <div class="feature-icon w-12 h-12 rounded-full flex items-center justify-center mb-5 opacity-80">
+                <i data-feather="activity" class="w-5 h-5"></i>
+              </div>
+              <h3 class="text-lg font-bold mb-3">Rhythms</h3>
+              <p>Rhythms of thought. Waves of calm.</p>
+            </div>
+
+            <!-- Whispers -->
+            <div class="feature-card rounded-xl p-6 sm:p-8 transition duration-300" data-aos="fade-up" data-aos-delay="60">
+              <div class="feature-icon w-12 h-12 rounded-full flex items-center justify-center mb-5 opacity-80">
+                <i data-feather="message-circle" class="w-5 h-5"></i>
+              </div>
+              <h3 class="text-lg font-bold mb-3">Whispers</h3>
+              <p>Words that meet you where you are.</p>
+            </div>
+
+            <!-- Quiet -->
+            <div class="feature-card rounded-xl p-6 sm:p-8 transition duration-300" data-aos="fade-up" data-aos-delay="120">
+              <div class="feature-icon w-12 h-12 rounded-full flex items-center justify-center mb-5 opacity-80">
+                <i data-feather="shield" class="w-5 h-5"></i>
+              </div>
+              <h3 class="text-lg font-bold mb-3">Quiet</h3>
+              <p>Your space. Your data. The rest is noise.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="text-[#1a1d2e] py-8 sm:py-12 border-t border-[#d8dcff]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+          <div class="flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center mb-6 md:mb-0">
+              <i data-feather="moon" class="text-[#7a6cff] w-6 h-6 mr-2"></i>
+              <span class="text-xl font-bold">Lumora</span>
+            </div>
+            <div class="flex space-x-6">
+              <a target="_blank" href="http://linkedin.com/company/lumorawellness/" class="hover:text-[#ffcf6b] transition duration-300" aria-label="LinkedIn">
+                <i data-feather="linkedin"></i>
+              </a>
+            </div>
+          </div>
+          <div class="mt-6 sm:mt-8 pt-6 sm:pt-8 text-center md:text-left">
+            <p class="text-[#4f5375]">© 2025 Lumora. Becoming.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    // Respect reduced motion
+    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function initVanta(){
+      if (prefersReduced || !window.VANTA) return;
+      
+      // Disable Vanta on small screens to improve performance
+      if (window.innerWidth < 768) return;
+      
+      VANTA.WAVES({
+        el: '#vanta-bg',
+        color: 0xbfd0ff,
+        backgroundColor: 0xf5f7ff,
+        waveHeight: 10,
+        shininess: 35,
+        waveSpeed: 0.45,
+        zoom: 0.9
+      });
+    }
+
+    function initAOS(){
+      if (prefersReduced || !window.AOS) return;
+      AOS.init({ 
+        duration: 650, 
+        once: true,
+        disable: window.innerWidth < 768 // Disable on mobile for better performance
+      });
+    }
+
+    // Handle orientation change
+    function handleOrientationChange() {
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 100);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initVanta();
+      initAOS();
+      if (window.feather) feather.replace();
+      
+      // Handle orientation changes on mobile
+      window.addEventListener('orientationchange', handleOrientationChange);
+      window.addEventListener('resize', handleOrientationChange);
+    });
+
+    // Prevent zoom on input focus (iOS fix)
+    document.addEventListener('touchstart', function() {}, true);
+  </script>
+</body>
+</html>
